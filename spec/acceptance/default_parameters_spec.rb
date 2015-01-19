@@ -15,7 +15,7 @@ else
   java_url = download_url
 end
 
-describe 'jira', :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
+describe 'jira postgresql', :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
 
   it 'installs with defaults' do
     pp = <<-EOS
@@ -59,29 +59,6 @@ describe 'jira', :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
     apply_manifest(pp, :catch_changes => true)
   end
 
-# Need to insert license key before upgrade
-#  it 'upgrades with defaults' do
-#    pp_update = <<-EOS
-#      $jh = $osfamily ? {
-#        'RedHat'  => '/usr/lib/jvm/java-1.7.0-openjdk.x86_64',
-#        'Debian'  => '/usr/lib/jvm/java-7-openjdk-amd64',
-#        default   => '/opt/java',
-#      }
-#      class { 'stash':
-#        version     => '3.3.1',
-#        downloadURL => 'http://10.43.230.24/',
-#        javahome    => $jh,
-#      }
-#    EOS
-#    sleep 180
-#    shell 'wget -q --tries=180 --retry-connrefused --read-timeout=10 localhost:8080', :acceptable_exit_codes => [0]
-#    apply_manifest(pp_update, :catch_failures => true)
-#    shell 'wget -q --tries=180 --retry-connrefused --read-timeout=10 localhost:8080', :acceptable_exit_codes => [0]
-#    sleep 180
-#    shell 'wget -q --tries=180 --retry-connrefused --read-timeout=10 localhost:8080', :acceptable_exit_codes => [0]
-#    apply_manifest(pp_update, :catch_changes => true)
-#  end
-#
   describe process("java") do
     it { should be_running }
   end
@@ -92,6 +69,7 @@ describe 'jira', :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
 
   describe service('jira') do
     it { should be_enabled }
+    it { should be_running }
   end
 
   describe user('jira') do
@@ -104,6 +82,18 @@ describe 'jira', :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
 
   describe user('jira') do
     it { should have_login_shell '/bin/true' }
+  end
+
+  describe command('wget -q --tries=240 --retry-connrefused --read-timeout=10 -O- localhost:8080') do
+    its(:stdout) { should match /6\.2\.7/ }
+  end
+
+  describe 'shutdown' do
+    it { shell("service jira stop", :acceptable_exit_codes => [0,1]) }
+    it { shell("pkill -f postgres", :acceptable_exit_codes => [0,1]) }
+    it { shell("pkill -f postgres", :acceptable_exit_codes => [0,1]) }
+    it { shell("pkill -f jira", :acceptable_exit_codes => [0,1]) }
+    it { shell("pkill -f jira", :acceptable_exit_codes => [0,1]) }
   end
 
 end
