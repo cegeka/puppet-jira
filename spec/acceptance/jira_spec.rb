@@ -5,6 +5,7 @@ describe 'apache' do
   describe 'running puppet code' do
     it 'should work with no errors' do
       pp = <<-EOS
+      include archive
       class { '::jira':
         javahome => '/opt/java/latest',
         db       => 'mysql',
