@@ -5,16 +5,22 @@ describe 'apache' do
   describe 'running puppet code' do
     it 'should work with no errors' do
       pp = <<-EOS
-      include archive
-      class { '::jira':
-        javahome => '/opt/java/latest',
-        db       => 'mysql',
-        dbport   => '3306',
-        dbdriver => 'com.mysql.jdbc.Driver',
-        dbtype   => 'mysql',
+
+      include 'yum'
+      include 'cegekarepos'
+      include 'profile::package_management'
+      Yum::Repo <| title == 'cegeka-unsigned' |>
+      sunjdk::instance { 'jdk-1.7.0_06-fcs':
+        ensure      => 'present',
+        jdk_version => '1.7.0_06-fcs'
       }
-    
-      include ::jira::facts
+
+      class { 'jira':
+        version      => '7.1.7',
+        checksum     => 'aa17cef91b910f8a112a51c769c89f3f',
+        javahome     => '/opt/java',
+      }
+      class { 'jira::facts': }
       EOS
 
       # Run it twice and test for idempotency
