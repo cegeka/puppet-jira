@@ -10,15 +10,15 @@ describe 'apache' do
       include 'cegekarepos'
       include 'profile::package_management'
       Yum::Repo <| title == 'cegeka-unsigned' |>
-      sunjdk::instance { 'jdk-1.7.0_06-fcs':
+      sunjdk::instance { 'jdk-1.8.0_05-fcs':
         ensure      => 'present',
-        jdk_version => '1.7.0_06-fcs'
+        jdk_version => '1.8.0_05-fcs'
       }
 
       class { 'jira':
         version      => '7.1.7',
         checksum     => 'aa17cef91b910f8a112a51c769c89f3f',
-        javahome     => '/opt/java',
+        javahome     => '/usr/java/jdk1.8.0_05',
       }
       class { 'jira::facts': }
       EOS
@@ -28,5 +28,13 @@ describe 'apache' do
       apply_manifest(pp, :catch_changes => true)
     end
 
+    describe port(8080) do
+      it { is_expected.to be_listening }
+    end
+
+    describe service('jira') do
+      it { is_expected.to be_enabled }
+      it { is_expected.to be_running }
+    end
   end
 end
