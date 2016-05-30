@@ -138,6 +138,6 @@ class jira::install {
         require => Staging::Extract[$file],
       }
     }
-    contain ::jira::mysql_connector
+    include ::jira::mysql_connector
   }
 }
