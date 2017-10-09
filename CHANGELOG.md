@@ -1,6 +1,30 @@
 # Changelog
 
-## 2017-01-13 - Release 3.1.0
+All notable changes to this project will be documented in this file.
+Each new release typically also includes the latest modulesync defaults.
+These should not affect the functionality of the module.
+
+## [v3.2.0](https://github.com/voxpupuli/puppet-jira/tree/v3.2.0) (2017-10-10)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-jira/compare/v3.1.0...v3.2.0)
+
+**Implemented enhancements:**
+
+- Issue \#215 - Disable user, need to update spec tests [\#223](https://github.com/voxpupuli/puppet-jira/pull/223) ([cyberious](https://github.com/cyberious))
+- add acceptance tests on ubuntu 14.04 [\#222](https://github.com/voxpupuli/puppet-jira/pull/222) ([bastelfreak](https://github.com/bastelfreak))
+- Add $tomcat\_protocol\_ssl paramater for compatibility with Jira \>= 7.3. [\#219](https://github.com/voxpupuli/puppet-jira/pull/219) ([markleary](https://github.com/markleary))
+- replace validate\_\* with datatypes [\#212](https://github.com/voxpupuli/puppet-jira/pull/212) ([bastelfreak](https://github.com/bastelfreak))
+
+**Closed issues:**
+
+- Error: /Stage\[main\]/Jira::Install/Archive\[/tmp/atlassian-jira-software-7.2.3.tar.gz\]/ensure: change from absent to present failed: Download file checksum mismatch [\#173](https://github.com/voxpupuli/puppet-jira/issues/173)
+
+**Merged pull requests:**
+
+- Fix \#206 rubocop failures [\#207](https://github.com/voxpupuli/puppet-jira/pull/207) ([sacres](https://github.com/sacres))
+- release 3.1.0 [\#203](https://github.com/voxpupuli/puppet-jira/pull/203) ([bastelfreak](https://github.com/bastelfreak))
+
+## v3.1.0 (2017-01-13)
 
 This is the last release with Puppet 3 support!
 - modulesync with latest Vox Pupuli defaults
@@ -15,7 +39,7 @@ This is the last release with Puppet 3 support!
 - Remove extraneous comma in config.pp.
 - Add Docker acceptance tests for travis
 
-## 2016-11-23 - Release 3.0.1
+## v3.0.1 (2016-11-23)
 ### Summary
 - Atlassian doesn't provide checksums, add checksum_verify false.
 - Update README
@@ -28,7 +52,7 @@ This is the last release with Puppet 3 support!
 - Amend README to clarify default deploy module
 - modulesync with latest Vox Pupuli defaults
 
-## 2016-10-04 - Release 3.0.0
+## v3.0.0 (2016-10-04)
 ### Summary
 - Change pool_test_on_borrow default to false in init class :: As this alters init class, requires MAJOR release
 - Add access log format variable to init :: as this also hits init class, MAJOR release
@@ -42,7 +66,7 @@ This is the last release with Puppet 3 support!
 ### Improvements
 - modulesync with latest Vox Pupuli defaults
 
-## 2016-09-08 - Release 2.1.0
+## v2.1.0 (2016-09-08)
 ### Summary
 - modulesync with latest Vox Pupuli defaults
 
@@ -53,7 +77,7 @@ This is the last release with Puppet 3 support!
 - Service status is not working when using init scripts
 - Fix JIRA 7.1.x download URL
 
-## 2016-05-26 - Release 2.0.0
+## v2.0.0 (2016-05-26)
 ### Summary
 - We dropped ruby1.8 support!
 - mkrakowitzer-deploy got replaced by puppet-archive.
@@ -79,21 +103,21 @@ This is the last release with Puppet 3 support!
 - Fix jira::mysql_connector_url
 
 
-##2015-08-05 - Release 1.3.0
-###Summary
+## v1.3.0 (2015-08-05)
+### Summary
 - Add SSL Support #76
 - Resolve issue where rake lint tasks always exited with 0 status
 - added new parameter disable_notifications in relation to setenv.sh
 - Add examples
 
 
-##2015-04-25 - Release 1.2.1
-###Summary
+## v1.2.1 (2015-04-25)
+### Summary
 - Update metadata, README, CHANGELOG to point to new namespace.
 - Update .travis.yml to auto deploy tagged versions
 
 
-##2015-04-16 - Release 1.2.0
+## v1.2.0 (2015-04-16)
 - Issue #51 Make the jira users shell configurable
 - Add a notify and subscribe options to the jira service
 - Added oracle to db input validator
@@ -108,7 +132,7 @@ This is the last release with Puppet 3 support!
 Thanks to Scott Searcy, Oliver Bertuch, Paul Geringer, Eric Shamow, William Lieurance, Doug Neal for their contributions.
 
 
-##2014-01-21 - Release 1.1.5
+## v1.1.5 (2014-01-21)
 - Add beaker tests for MySQL
 - Added support for Oracle and Scientific Linux
 - Bump jira version to 6.3.13
@@ -119,7 +143,7 @@ Thanks to Scott Searcy, Oliver Bertuch, Paul Geringer, Eric Shamow, William Lieu
 Thanks to  Oliver Bertuch  for his contributions.
 
 
-##2014-01-17 - Release 1.1.4
+## v1.1.4 (2014-01-17)
 - Parameterize the lockfile variable in the init script
 - Autoinstall MySql Connector/J Driver
 - Add parameter stop_jira
@@ -128,7 +152,7 @@ Thanks to  Oliver Bertuch  for his contributions.
 Thanks to MasonM for his contributions
 
 
-##2014-11-17 - Release 1.1.3
+## v1.1.3 (2014-11-17)
 - Refactor beaker tests to that they are portable and other people can run them
 - Remove unnecessary comments from init.pp
 - Dont cleanup jira tar.gz file when using staging module.
@@ -138,31 +162,34 @@ Thanks to MasonM for his contributions
 - Add support for systemd style init script on RedHat/CentOS 7
 
 
-##2014-10-19 - Release 1.1.2
+## v1.1.2 (2014-10-19)
 - Add new parameter: jvm_permgen, defaults to 256m.
 - Updates to readme
 
 
-##2014-10-11 - Release 1.1.1
+## v1.1.1 (2014-10-11)
 - Fix typo of in module nanliu-staging, preving module from being installed
 
 
-##2014-10-09 - Release 1.1.0
+## v1.1.0 (2014-10-09)
 - Add beaker tests for Ubuntu/Centos/Debian
 - Issue #3 Handle updating of Jira
 
-###Summary
+### Summary
 Resolve Issue #29
 - Add external fact for running version of JIRA.
 - Replace mkrakowitzer-deploy with nanliu-staging as the default module to deploy jira files
 
 
-##2014-10-01 - Release 1.0.1
+## v1.0.1 (2014-10-01)
 
-###Summary
+### Summary
 Update the README file to comply with puppetlabs standards
 - https://docs.puppetlabs.com/puppet/latest/reference/modules_documentation.html
 - https://docs.puppetlabs.com/puppet/latest/reference/READMEtemplate.markdown
 
-####Bugfixes
+#### Bugfixes
 - None
+
+
+\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
