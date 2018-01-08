@@ -575,3 +575,4 @@ export download_url="'http://my.local.server/'"
 ##Contributors
 
 The list of contributors can be found [here](https://github.com/brycejohnson/puppet-jira/graphs/contributors)
+
