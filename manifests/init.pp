@@ -46,7 +46,8 @@ class jira (
 
   # Advanced configuration options
   $enable_secure_admin_sessions = true,
-  $jira_config_properties    = {},
+  $jira_config_properties       = {},
+  $raw_context_config           = [],
 
   $datacenter   = false,
   $shared_homedir = undef,
