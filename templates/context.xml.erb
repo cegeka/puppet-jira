@@ -32,6 +32,11 @@
     <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
     -->
 
+<% if ! scope.lookupvar('jira::raw_context_config').empty? -%>
+<% scope.lookupvar('jira::raw_context_config').each do |config| -%>
+    <%= config %>
+<% end -%>
+<% end -%>
 <% if ! scope.lookupvar('jira::resources').empty? -%>
 <%   scope.lookupvar('jira::resources').each do |name, values| -%>
     <Resource name = "<%= name %>"
