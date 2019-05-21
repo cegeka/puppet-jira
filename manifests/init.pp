@@ -133,6 +133,9 @@ class jira (
   $tomcat_keystore_pass             = 'changeit',
   $tomcat_keystore_type             = 'JKS',
 
+  $tomcat_relaxedPathChars          = undef,
+  $tomcat_relaxedQueryChars         = undef,
+
   # Tomcat Tunables
   $tomcat_max_threads  = '150',
   $tomcat_accept_count = '100',
