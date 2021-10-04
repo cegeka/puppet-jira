@@ -1,21 +1,19 @@
 node default {
-
-  class { '::postgresql::globals':
+  class { 'postgresql::globals':
     manage_package_repo => true,
-    version             => '9.3',
-  } ->
+    version             => '11',
+  }
 
-  class { '::postgresql::server': } ->
+  -> class { 'postgresql::server': }
 
-  postgresql::server::db { 'jira':
+  -> postgresql::server::db { 'jira':
     user     => 'jiraadm',
     password => postgresql_password('jiraadm', 'mypassword'),
-  } ->
+  }
 
-  class { '::jira':
+  -> class { 'jira':
     javahome    => '/opt/java/latest',
   }
 
-  include ::jira::facts
-
+  include jira::facts
 }

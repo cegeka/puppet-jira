@@ -1,24 +1,22 @@
 node default {
-
-  class { '::mysql::server':
+  class { 'mysql::server':
     root_password    => 'strongpassword',
-  } ->
+  }
 
-  mysql::db { 'jira':
+  -> mysql::db { 'jira':
     user     => 'jiraadm',
     password => 'mypassword',
     host     => 'localhost',
     grant    => ['ALL'],
-  } ->
+  }
 
-  class { '::jira':
+  -> class { 'jira':
     javahome => '/opt/java/latest',
     db       => 'mysql',
-    dbport   => '3306',
+    dbport   => 3306,
     dbdriver => 'com.mysql.jdbc.Driver',
     dbtype   => 'mysql',
   }
 
-  include ::jira::facts
-
+  include jira::facts
 }
