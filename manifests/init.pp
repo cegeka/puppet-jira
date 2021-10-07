@@ -411,9 +411,9 @@ class jira (
   Optional[String] $jvm_permgen                                     = undef,
   Optional[Integer[0]] $poolsize                                    = undef,
   Optional[Boolean] $enable_connection_pooling                      = undef,
-  
+
   #Custom configuration options
-  $raw_context_config                                               = [], 
+  $raw_context_config                                               = [],
 
 ) {
   # To maintain compatibility with previous behaviour, we check for not-servicedesk instead of specifying the 
