@@ -32,11 +32,6 @@
     <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
     -->
 
-<% if ! empty($jira::raw_context_config) { -%>
-<% $jira::raw_context_config.each |$config| { -%>
-    <%= $config %>
-<% } -%>
-<% } -%>
 <%   jira::sort_hash($jira::resources).each |$name, $values| { -%>
     <Resource name = "<%= $name %>"
 <%     jira::sort_hash($values).each |$key, $value| { -%>

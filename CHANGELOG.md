@@ -4,6 +4,86 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v6.2.1](https://github.com/voxpupuli/puppet-jira/tree/v6.2.1) (2025-06-02)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-jira/compare/v6.2.0...v6.2.1)
+
+**Fixed bugs:**
+
+- Use Deferred on epp call to generate dbconfig.xml [\#445](https://github.com/voxpupuli/puppet-jira/pull/445) ([h-haaks](https://github.com/h-haaks))
+
+**Closed issues:**
+
+- With release 6.2.0 puppet again starts to change dbconfig.xml on every agent run [\#444](https://github.com/voxpupuli/puppet-jira/issues/444)
+
+## [v6.2.0](https://github.com/voxpupuli/puppet-jira/tree/v6.2.0) (2025-03-27)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-jira/compare/v6.1.1...v6.2.0)
+
+**Implemented enhancements:**
+
+- metadata.json: Add OpenVox [\#442](https://github.com/voxpupuli/puppet-jira/pull/442) ([jstraw](https://github.com/jstraw))
+- Add AlmaLinux/Rocky support [\#438](https://github.com/voxpupuli/puppet-jira/pull/438) ([bastelfreak](https://github.com/bastelfreak))
+- Add Ubuntu 22.04 support [\#437](https://github.com/voxpupuli/puppet-jira/pull/437) ([bastelfreak](https://github.com/bastelfreak))
+- Add EL9 support [\#435](https://github.com/voxpupuli/puppet-jira/pull/435) ([bastelfreak](https://github.com/bastelfreak))
+
+**Fixed bugs:**
+
+- Fix breaking change regression of PR \#429 [\#434](https://github.com/voxpupuli/puppet-jira/pull/434) ([diLLec](https://github.com/diLLec))
+
+## [v6.1.1](https://github.com/voxpupuli/puppet-jira/tree/v6.1.1) (2025-02-24)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-jira/compare/v6.1.0...v6.1.1)
+
+Due to some CI issues, the `v6.1.0` release was tagged as `v6.1.0` but contains `v6.1.0-rc0` in metadata.json. `v6.1.1` is just a rerelease.
+
+## [v6.1.0](https://github.com/voxpupuli/puppet-jira/tree/v6.1.0) (2025-02-24)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-jira/compare/v6.0.0...v6.1.0)
+
+**Implemented enhancements:**
+
+- Add manage\_homedir support [\#392](https://github.com/voxpupuli/puppet-jira/issues/392)
+- Add "change database password" parameter - JIRA \>10.3 [\#429](https://github.com/voxpupuli/puppet-jira/pull/429) ([diLLec](https://github.com/diLLec))
+- Add `manage_homedir` parameter [\#428](https://github.com/voxpupuli/puppet-jira/pull/428) ([Joris29](https://github.com/Joris29))
+- Allow puppet/systemd 8.x [\#427](https://github.com/voxpupuli/puppet-jira/pull/427) ([jay7x](https://github.com/jay7x))
+- update puppet-systemd upper bound to 8.0.0 [\#423](https://github.com/voxpupuli/puppet-jira/pull/423) ([TheMeier](https://github.com/TheMeier))
+- Add Debian 11 support [\#397](https://github.com/voxpupuli/puppet-jira/pull/397) ([root-expert](https://github.com/root-expert))
+
+**Fixed bugs:**
+
+- Update Readme, fix CI Badge, Links, Code Block formats, add Reference… [\#420](https://github.com/voxpupuli/puppet-jira/pull/420) ([rwaffen](https://github.com/rwaffen))
+
+## [v6.0.0](https://github.com/voxpupuli/puppet-jira/tree/v6.0.0) (2024-02-13)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-jira/compare/v5.1.0...v6.0.0)
+
+**Breaking changes:**
+
+- Drop Puppet 6 support [\#404](https://github.com/voxpupuli/puppet-jira/pull/404) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Fix tests with modulesync 7.3.0; allow latest dependency versions [\#414](https://github.com/voxpupuli/puppet-jira/pull/414) ([h-haaks](https://github.com/h-haaks))
+- Add Puppet 8 support [\#408](https://github.com/voxpupuli/puppet-jira/pull/408) ([bastelfreak](https://github.com/bastelfreak))
+- Allow custom plugin installation and usage of JNDI database connections [\#389](https://github.com/voxpupuli/puppet-jira/pull/389) ([ThomasMinor](https://github.com/ThomasMinor))
+
+**Fixed bugs:**
+
+- Update setenv.sh.epp if statement to work with service desk [\#400](https://github.com/voxpupuli/puppet-jira/pull/400) ([techtino](https://github.com/techtino))
+- Avoid duplicate scheme declaration when using proxy with SSL [\#396](https://github.com/voxpupuli/puppet-jira/pull/396) ([jmcnatt](https://github.com/jmcnatt))
+
+**Closed issues:**
+
+- JVM\_OPENS not set for JIRA Java 17 support [\#412](https://github.com/voxpupuli/puppet-jira/issues/412)
+- cluster.properties.epp - soon to be deprecated code by Puppet 8 [\#411](https://github.com/voxpupuli/puppet-jira/issues/411)
+
+**Merged pull requests:**
+
+- Bugfix java 17 support per atlassian upstream [\#413](https://github.com/voxpupuli/puppet-jira/pull/413) ([valentino-aguiar-gsa](https://github.com/valentino-aguiar-gsa))
+- Remove legacy top-scope syntax [\#410](https://github.com/voxpupuli/puppet-jira/pull/410) ([smortex](https://github.com/smortex))
+- Allow up-to-date dependencies [\#393](https://github.com/voxpupuli/puppet-jira/pull/393) ([smortex](https://github.com/smortex))
+
 ## [v5.1.0](https://github.com/voxpupuli/puppet-jira/tree/v5.1.0) (2021-08-20)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-jira/compare/v5.0.1...v5.1.0)
@@ -379,7 +459,7 @@ This is the last release with Puppet 3 support!
 - We added JIRA 7 Support
 
 ### Improvements
-- Use defined function to test for the existence of the fact ::jira_ver
+- Use defined function to test for the existence of the fact jira_ver
 - Added hieradata examples for Oracle DB backend
 - Added containment for mysql_connector class
 - Support STRICT_VARIABLES=yes

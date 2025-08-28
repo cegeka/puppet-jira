@@ -1,20 +1,20 @@
 # JIRA module for Puppet
 
-[![Build Status](https://travis-ci.org/voxpupuli/puppet-jira.png?branch=master)](https://travis-ci.org/voxpupuli/puppet-jira)
+[![CI](https://github.com/voxpupuli/puppet-jira/actions/workflows/ci.yml/badge.svg)](https://github.com/voxpupuli/puppet-jira/actions/workflows/ci.yml)
 [![Code Coverage](https://coveralls.io/repos/github/voxpupuli/puppet-jira/badge.svg?branch=master)](https://coveralls.io/github/voxpupuli/puppet-jira)
 [![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/jira.svg)](https://forge.puppetlabs.com/puppet/jira)
 [![Puppet Forge - downloads](https://img.shields.io/puppetforge/dt/puppet/jira.svg)](https://forge.puppetlabs.com/puppet/jira)
 [![Puppet Forge - endorsement](https://img.shields.io/puppetforge/e/puppet/jira.svg)](https://forge.puppetlabs.com/puppet/jira)
 [![Puppet Forge - scores](https://img.shields.io/puppetforge/f/puppet/jira.svg)](https://forge.puppetlabs.com/puppet/jira)
 
-#### Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
 3. [Setup - The basics of getting started with JIRA](#setup)
-    * [JIRA Prerequisites](#JIRA-prerequisites)
-    * [What JIRA affects](#what-JIRA-affects)
-    * [Beginning with JIRA](#beginning-with-JIRA)
+    * [JIRA Prerequisites](#jira-prerequisites)
+    * [What JIRA affects](#what-jira-affects)
+    * [Beginning with JIRA](#beginning-with-jira)
     * [Upgrades](#upgrades)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
@@ -93,11 +93,21 @@ If you would prefer to use Hiera then see jira.yaml file for an example.
 The module can install a package for you using your OS's package manager.
 Note that there's no smarts here. You need to set javahome correctly.
 
+*Pre JIRA 10*
 ```puppet
   # this example works on RHEL
   class { 'jira':
     java_package  => 'java-11-openjdk-headless'
     javahome      => '/usr/lib/jvm/jre-11-opendjk/',
+  }
+```
+
+*Post JIRA 10*
+```puppet
+  # this example works on RHEL
+  class { 'jira':
+    java_package  => 'java-17-openjdk'
+    javahome      => '/usr/lib/jvm/jre-17-opendjk/',
   }
 ```
 
@@ -113,7 +123,7 @@ doing large version upgrades. Always backup your database and your home director
   class { 'jira':
     java_package  => 'java-11-openjdk-headless'
     javahome      => '/usr/lib/jvm/jre-11-opendjk/',
-    version     => '8.16.0',
+    version       => '8.16.0',
   }
 ```
 
@@ -247,6 +257,15 @@ Reverse proxy can be configured as a hash as part of the JIRA resource
    },
 ```
 
+### notes on secret encryption in dbconfig.xml
+The JIRA process will read the dbconfig.xml on startup replace it with the string "{ATL_SECURED}". The password is moved
+into `<shared_homedir>/keys/javax.crypto.spec.SecretKeySpec_<some random number>`. It is important that this directory
+is not located inside of the installation dir as you would lose it in the case of an update.
+
+## Reference
+
+see [REFERENCE.md](REFERENCE.md)
+
 ## Limitations
 
 * Puppet 6.1.0
@@ -274,18 +293,20 @@ Please feel free to raise any issues here for bug fixes. We also welcome feature
 requests. Feel free to make a pull request for anything and we make the effort to
 review and merge. We prefer with tests if possible.
 
-## Testing - How to test the JIRA module
+## Testing
+
+### How to test the JIRA module
 
 Using [puppetlabs_spec_helper](https://github.com/puppetlabs/puppetlabs_spec_helper).
 Simply run:
 
-```
+```shell
 bundle install && bundle exec rake spec
 ```
 
 to get results.
 
-```
+```shell
 ruby -S rspec spec/classes/jira_install_spec.rb --color
 .
 
@@ -298,7 +319,7 @@ Using [Beaker - Puppet Labs cloud enabled acceptance testing tool.](https://gith
 The beaker tests will install oracle Java to /opt/java. When running the beaker
 tests you agree that you accept the [oracle java license](http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
 
-```
+```shell
 bundle install
 BEAKER_set=ubuntu-server-12042-x64 bundle exec rake beaker
 BEAKER_set=ubuntu-server-1404-x64 bundle exec rake beaker
@@ -311,7 +332,7 @@ BEAKER_set=centos-64-x64-pe bundle exec rake beaker
 To save build time it is useful to host the installation files locally on a web
 server. You can use the download_url environment variable to overwrite the default.
 
-```bash
+```shell
 export download_url="'http://my.local.server/'"
 ```
 
